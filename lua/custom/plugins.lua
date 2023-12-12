@@ -8,7 +8,9 @@ local plugins = {
         "isort",
         "black",
         "prettier",
-        "emmet-language-server"
+        "emmet-language-server",
+        "css-lsp",
+        "typescript-language-server"
       }
     }
   },

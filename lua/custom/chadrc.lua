@@ -1,43 +1,9 @@
--- vim.g.vscode_snippets_path = "~/Library/Application Support/Code/User/snippets/"
-
-vim.opt.relativenumber = true
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   pattern = "*",
---   callback = function(args)
---     require("conform").format({ bufnr = args.buf })
---   end,
--- })
-
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv'")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv'")
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
--- vim.keymap.set("n", "]d", function()
---   vim.diagnostic.goto_next()
--- end)
-
-vim.keymap.set("n", "gd", function ()
-  vim.lsp.buf.definition()
-end)
-vim.keymap.set("n", "H", function ()
-  vim.ls.buf.hover()
-end)
-
-vim.keymap.set({ "n", "v" }, "<leader>mp", function ()
-  require("conform").format({
-    lsp_fallback = true,
-    async = false,
-    timeout_ms = 500
-  })
-end, {desc = "Format file or range (in visual mode)"})
-
 ---@type ChadrcConfig
 local M = {}
 
 M.ui = {
   theme = 'catppuccin',
+  theme_toggle = {"catppuccin", "oxocarbon"},
   nvdash = {
     load_on_startup = true,
     -- header = {

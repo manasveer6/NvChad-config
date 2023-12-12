@@ -12,7 +12,7 @@ require("conform").setup({
     javascriptreact = { "prettier" },
     typescriptreact = { "prettier" },
     json = { "prettier" },
-    ["*"] = {"trim_whitespace"}
+    ["_"] = {"trim_whitespace"}
   },
   format_on_save = {
     -- These options will be passed to conform.format()
