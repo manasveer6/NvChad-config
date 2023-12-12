@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "pylsp"}
+local servers = { "emmet_language_server", "cssls", "clangd", "pylsp"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -12,8 +12,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Without the loop, you would have to manually set up each LSP 
--- 
+-- Without the loop, you would have to manually set up each LSP
+--
 -- lspconfig.html.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,

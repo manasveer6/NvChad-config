@@ -7,7 +7,7 @@ require("toggleterm").setup{
     else return 20
     end
   end,
-  open_mapping = [[<c-/>]],
+  open_mapping = [[<c-\>]],
   direction = "float",
   close_on_exit = true,
   -- persist_mode = true,
