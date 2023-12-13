@@ -10,8 +10,8 @@ local options = {
 
   autotag = {
     enable = true,
-    filetypes = {"html", "htmx", "javascript", "tsx"}
-  }
+    filetypes = { "html", "htmx", "javascript", "tsx" },
+  },
 }
 
 return options

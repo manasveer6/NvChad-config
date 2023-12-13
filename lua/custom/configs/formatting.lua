@@ -1,4 +1,4 @@
-require("conform").setup({
+require("conform").setup {
   formatters_by_ft = {
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
@@ -12,7 +12,7 @@ require("conform").setup({
     javascriptreact = { "prettier" },
     typescriptreact = { "prettier" },
     json = { "prettier" },
-    ["_"] = {"trim_whitespace"}
+    ["_"] = { "trim_whitespace" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
@@ -20,4 +20,4 @@ require("conform").setup({
     timeout_ms = 500,
     lsp_fallback = true,
   },
-})
+}

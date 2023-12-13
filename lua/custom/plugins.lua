@@ -3,6 +3,7 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "stylua",
         "clangd",
         "python-lsp-server",
         "isort",
@@ -10,9 +11,10 @@ local plugins = {
         "prettier",
         "emmet-language-server",
         "css-lsp",
-        "typescript-language-server"
-      }
-    }
+        "typescript-language-server",
+        "bash-language-server",
+      },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -25,25 +27,25 @@ local plugins = {
     end,
   },
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     -- opts = {},
     config = function()
       require "custom.configs.formatting"
     end,
-    event = { "BufReadPre", "BufNewFile" }
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "L3MON4D3/LuaSnip",
-    opts = function ()
+    opts = function()
       return require "custom.configs.luasnip"
     end,
     config = function(_, opts)
       require("luasnip").setup(opts)
-    end
+    end,
   },
   {
-    'ThePrimeagen/vim-be-good',
-    lazy = false
+    "ThePrimeagen/vim-be-good",
+    lazy = false,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -63,23 +65,23 @@ local plugins = {
         "json",
         -- "vue", "svelte",
 
-       -- low level
+        -- low level
         "c",
         "cpp",
         "zig",
 
         -- other
         "python",
-        "java"
+        "java",
       },
     },
   },
--- In order to modify the `lspconfig` configuration:
+  -- In order to modify the `lspconfig` configuration:
   {
     "neovim/nvim-lspconfig",
     config = function()
-       require "plugins.configs.lspconfig"
-       require "custom.configs.lspconfig"
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end,
   },
   {
@@ -87,7 +89,7 @@ local plugins = {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-    lazy = false
+    lazy = false,
   },
   {
     "akinsho/toggleterm.nvim",
@@ -95,7 +97,7 @@ local plugins = {
     opts = function()
       require "custom.configs.toggleterm"
     end,
-    lazy = false
+    lazy = false,
   },
   {
     "echasnovski/mini.nvim",
@@ -103,7 +105,7 @@ local plugins = {
     config = function()
       require "custom.configs.mini"
     end,
-    lazy = false
+    lazy = false,
   },
 }
 

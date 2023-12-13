@@ -1,10 +1,11 @@
-require("toggleterm").setup{
+require("toggleterm").setup {
   size = function(term)
     if term.direction == "horizontal" then
       return 20
     elseif term.direction == "vertical" then
       return vim.o.columns * 0.4
-    else return 20
+    else
+      return 20
     end
   end,
   open_mapping = [[<c-\>]],
@@ -24,6 +25,6 @@ require("toggleterm").setup{
     enabled = false,
     name_formatter = function(term)
       return term.name
-    end
-  }
+    end,
+  },
 }

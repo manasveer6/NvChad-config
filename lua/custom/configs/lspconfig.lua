@@ -1,43 +1,47 @@
-local configs = require("plugins.configs.lspconfig")
+local configs = require "plugins.configs.lspconfig"
 local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "emmet_language_server", "html", "cssls", "clangd", "pylsp", "tsserver"}
+local servers = { "emmet_language_server", "html", "cssls", "clangd", "pylsp", "tsserver", "bashls" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
     "html",
-    "htmx"
+    "htmx",
   },
   html = {
     "html",
-    "htmx"
+    "htmx",
   },
   cssls = {
     "css",
-    "scss"
+    "scss",
   },
   tsserver = {
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
   },
   clangd = {
     "c",
-    "cpp"
+    "cpp",
   },
   pylsp = {
-    "python"
-  }
+    "python",
+  },
+  bashls = {
+    "sh",
+    "zsh",
+  },
 }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = filetypes_by_servers[lsp]
+    filetypes = filetypes_by_servers[lsp],
   }
 end
 
