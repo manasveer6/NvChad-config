@@ -107,6 +107,21 @@ local plugins = {
     end,
     lazy = false,
   },
+  {
+    "eandrju/cellular-automaton.nvim",
+    lazy = false,
+  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   opts = {
+  --     filters = {
+  --       dotfiles = true,
+  --     },
+  --     git = {
+  --       enable = true,
+  --     },
+  --   },
+  -- },
 }
 
 return plugins
