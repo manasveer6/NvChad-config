@@ -36,3 +36,5 @@ end, { desc = "Format file or range (in visual mode)" })
 
 -- Makes the code rain lol
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+vim.keymap.set("n", "<leader>mm", "<cmd>TSJToggle<CR>", { desc = "Toggle Treesitter Join" })

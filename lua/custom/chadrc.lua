@@ -12,6 +12,9 @@ M.ui = {
     NvDashButtons = {
       bg = "NONE",
     },
+    FoldColumn = {
+      fg = "grey_fg",
+    },
   },
   nvdash = {
     load_on_startup = true,

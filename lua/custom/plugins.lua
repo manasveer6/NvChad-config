@@ -18,37 +18,6 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function()
-      return require "custom.configs.treesitter"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
-  {
-    "stevearc/conform.nvim",
-    -- opts = {},
-    config = function()
-      require "custom.configs.formatting"
-    end,
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    opts = function()
-      return require "custom.configs.luasnip"
-    end,
-    config = function(_, opts)
-      require("luasnip").setup(opts)
-    end,
-  },
-  {
-    "ThePrimeagen/vim-be-good",
-    lazy = false,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
         -- defaults
@@ -74,9 +43,32 @@ local plugins = {
         "python",
         "java",
       },
+      autotag = {
+        enable = true,
+        filetypes = { "html", "htmx", "javascript", "tsx" },
+      },
     },
   },
-  -- In order to modify the `lspconfig` configuration:
+  {
+    "stevearc/conform.nvim",
+    -- opts = {},
+    config = function()
+      require "custom.configs.formatting"
+    end,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    opts = function()
+      return require "custom.configs.luasnip"
+    end,
+    config = function(_, opts)
+      require("luasnip").setup(opts)
+    end,
+  },
+  {
+    "ThePrimeagen/vim-be-good",
+  },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -86,10 +78,11 @@ local plugins = {
   },
   {
     "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "akinsho/toggleterm.nvim",
@@ -107,21 +100,68 @@ local plugins = {
     end,
     lazy = false,
   },
+  -- Fun plugin to waste time. Makes code rain or bubble
   {
     "eandrju/cellular-automaton.nvim",
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
   },
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   opts = {
-  --     filters = {
-  --       dotfiles = true,
-  --     },
-  --     git = {
-  --       enable = true,
-  --     },
-  --   },
-  -- },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true,
+    },
+  },
+  -- Better code folding
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require "custom.configs.nvim-ufo"
+    end,
+    event = "BufReadPre",
+  },
+  -- Smooth scrolling/movements
+  {
+    "declancm/cinnamon.nvim",
+    config = function()
+      require("cinnamon").setup {
+        extra_keymaps = true,
+        override_keymaps = true,
+        scroll_limit = 75,
+      }
+    end,
+    event = "BufReadPost",
+  },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    opts = { use_default_keymaps = false },
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      filters = {
+        dotfiles = true,
+      },
+      git = {
+        enable = true,
+      },
+      renderer = {
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+      view = {
+        centralize_selection = true,
+      },
+      diagnostics = {
+        enable = true,
+      },
+    },
+  },
 }
 
 return plugins
