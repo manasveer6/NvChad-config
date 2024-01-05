@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "emmet_language_server", "html", "cssls", "clangd", "pylsp", "tsserver", "bashls" }
+local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
@@ -44,6 +44,20 @@ for _, lsp in ipairs(servers) do
     filetypes = filetypes_by_servers[lsp],
   }
 end
+
+local cmp_nvim_lsp = require "cmp_nvim_lsp"
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = cmp_nvim_lsp.default_capabilities(),
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+  filetypes = {
+    "c",
+    "cpp",
+  },
+}
 
 -- for _, lsp in ipairs(servers) do
 --   lspconfig[lsp].setup {

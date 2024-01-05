@@ -2,6 +2,7 @@
 local M = {}
 
 M.ui = {
+
   theme = "catppuccin",
   theme_toggle = { "catppuccin", "oxocarbon" },
   hl_override = {
@@ -14,6 +15,12 @@ M.ui = {
     },
     FoldColumn = {
       fg = "grey_fg",
+    },
+    NvimTreeGitDirty = {
+      fg = "nord_blue",
+    },
+    NvimTreeGitNew = {
+      fg = "green",
     },
   },
   nvdash = {

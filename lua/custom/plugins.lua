@@ -5,6 +5,7 @@ local plugins = {
       ensure_installed = {
         "stylua",
         "clangd",
+        "clang-format",
         "python-lsp-server",
         "isort",
         "black",
@@ -19,41 +20,25 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = {
-        -- defaults
-        "vim",
-        "lua",
-
-        -- web dev
-        "html",
-        "css",
-        "scss",
-        "javascript",
-        "typescript",
-        "tsx",
-        "json",
-        -- "vue", "svelte",
-
-        -- low level
-        "c",
-        "cpp",
-        "zig",
-
-        -- other
-        "python",
-        "java",
-      },
+      auto_install = true,
       autotag = {
         enable = true,
         filetypes = { "html", "htmx", "javascript", "tsx" },
       },
     },
   },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- opts = {},
+  --   config = function()
+  --     require "custom.configs.formatting"
+  --   end,
+  --   event = { "BufReadPre", "BufNewFile" },
+  -- },
   {
-    "stevearc/conform.nvim",
-    -- opts = {},
+    "nvimtools/none-ls.nvim",
     config = function()
-      require "custom.configs.formatting"
+      require "custom.configs.none-ls"
     end,
     event = { "BufReadPre", "BufNewFile" },
   },
@@ -103,7 +88,6 @@ local plugins = {
   -- Fun plugin to waste time. Makes code rain or bubble
   {
     "eandrju/cellular-automaton.nvim",
-    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -130,7 +114,7 @@ local plugins = {
         scroll_limit = 75,
       }
     end,
-    event = "BufReadPost",
+    -- event = "BufReadPost",
   },
   {
     "Wansmer/treesj",
@@ -152,6 +136,15 @@ local plugins = {
           show = {
             git = true,
           },
+          glyphs = {
+            git = {
+              unstaged = "M",
+              staged = "M",
+              renamed = "R",
+              untracked = "U",
+            },
+          },
+          git_placement = "after",
         },
       },
       view = {
@@ -161,6 +154,20 @@ local plugins = {
         enable = true,
       },
     },
+  },
+  {
+    "Pocco81/true-zen.nvim",
+    config = function()
+      require("true-zen").setup {
+        integrations = {
+          tmux = true,
+        },
+      }
+    end,
+  },
+  {
+    "github/copilot.vim",
+    lazy = false,
   },
 }
 
