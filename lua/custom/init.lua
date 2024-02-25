@@ -9,6 +9,10 @@ vim.opt.relativenumber = true
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv'<CR>:mark '><CR>")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv'<CR>:mark '><CR>")
 
+-- To move lines up or down in normal mode but commented because i'll lose my pastes
+-- vim.keymap.set("n", "<leader>J", "ddp")
+-- vim.keymap.set("n", "<leader>K", "ddkP")
+
 --Centers the cursor when moving up or down the page
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -74,3 +78,10 @@ vim.g.copilot_assume_mapped = true
 --   pattern = "c",
 --   command = "setlocal shiftwidth=4 tabstop=4",
 -- })
+
+-- vim.api.nvim_set_keymap(
+--   "v",
+--   "<Leader>v",
+--   ":s/\\%V\\(.*\\)\\%V/\\/\\* \\1 \\*\\//<CR>",
+--   { noremap = true, silent = true }
+-- )
