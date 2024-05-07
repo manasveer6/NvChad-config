@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls" }
+local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
@@ -34,6 +34,9 @@ local filetypes_by_servers = {
   bashls = {
     "sh",
     "zsh",
+  },
+  jdtls = {
+    "java",
   },
 }
 

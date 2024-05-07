@@ -85,3 +85,54 @@ vim.g.copilot_assume_mapped = true
 --   ":s/\\%V\\(.*\\)\\%V/\\/\\* \\1 \\*\\//<CR>",
 --   { noremap = true, silent = true }
 -- )
+
+-- Define the key mapping in Lua
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>#",
+  ":let @/ = '\\<' .. vim.fn.expand('<cword>') .. '\\>'<CR>",
+  { noremap = true, silent = true }
+)
+
+-- Define a Lua function to delete the function call without deleting the parameters
+local function deleteFunctionCall()
+  -- Save the cursor position
+  local save_cursor = vim.fn.getpos "."
+
+  -- Move the cursor to the start of the line
+  vim.cmd "normal! ^"
+
+  -- Find the start and end positions of the function call
+  local start_pos = vim.fn.search("\\<func\\(", "cnW")
+  local end_pos = vim.fn.search("\\)", "cnW")
+
+  -- If both start and end positions are found, delete the function call
+  if start_pos ~= 0 and end_pos ~= 0 then
+    -- Delete the function call without deleting the parameters
+    vim.cmd("normal! " .. start_pos .. "d" .. (end_pos - start_pos + 1) .. "x")
+  end
+
+  -- Restore the cursor position
+  vim.fn.setpos(".", save_cursor)
+end
+
+-- Define the keybinding to call the Lua function
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>da",
+  "dawxf)x",
+  { noremap = true, silent = true, desc = "Delete single lined fn calls preserving inside parameters" }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>db",
+  "daw%x''f(x",
+  { noremap = true, silent = true, desc = "Delete multi-line fn calls preserving inside parameters" }
+)
+
+-- Disable arrow keys in normal mode
+vim.keymap.set("n", "<left>", '<CMD>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<CMD>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<CMD>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<CMD>echo "Use j to move!!"<CR>')

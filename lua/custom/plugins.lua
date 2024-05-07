@@ -180,6 +180,13 @@ local plugins = {
     "github/copilot.vim",
     lazy = false,
   },
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require "custom.configs.auto-session"
+    end,
+    lazy = false,
+  },
 }
 
 return plugins
