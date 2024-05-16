@@ -18,6 +18,6 @@ require("auto-session").setup {
 
 -- Set mapping for searching a session.
 -- ⚠️ This will only work if Telescope.nvim is installed
-vim.keymap.set("n", "<leader>ls", require("auto-session.session-lens").search_session, {
+vim.keymap.set("n", "<leader>ld", require("auto-session.session-lens").search_session, {
   noremap = true,
 })
