@@ -125,7 +125,7 @@ local plugins = {
         scroll_limit = 75,
       }
     end,
-    -- event = "BufReadPost",
+    event = "BufReadPost",
   },
   {
     "Wansmer/treesj",
