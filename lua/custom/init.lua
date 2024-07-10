@@ -61,8 +61,10 @@ vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true,
 
 vim.g.copilot_filetypes = {
   ["*"] = false,
-  ["javascript"] = false,
-  ["typescript"] = false,
+  ["javascript"] = true,
+  ["javascriptreact"] = true,
+  ["typescript"] = true,
+  ["typescriptreact"] = true,
   ["lua"] = true,
   ["rust"] = true,
   -- ["c"] = true,

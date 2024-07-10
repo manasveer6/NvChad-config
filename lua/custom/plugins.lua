@@ -71,6 +71,11 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
+    opts = {
+      servers = {
+        tailwindcss = {},
+      },
+    },
   },
   {
     "windwp/nvim-ts-autotag",
@@ -123,6 +128,14 @@ local plugins = {
         extra_keymaps = true,
         override_keymaps = true,
         scroll_limit = 75,
+        -- keymaps = {
+        --   extra = true,
+        -- },
+        -- options = {
+        --   max_delta = {
+        --     line = 75,
+        --   },
+        -- },
       }
     end,
     event = "BufReadPost",
@@ -186,6 +199,37 @@ local plugins = {
       require "custom.configs.auto-session"
     end,
     lazy = false,
+  },
+  -- tailwind-tools.lua
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = false,
+    opts = {}, -- your configuration
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+    },
+    opts = function(_, opts)
+      local format_kinds = opts.formatting.format
+      opts.formatting.format = function(entry, item)
+        format_kinds(entry, item)
+        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+      end
+      -- opts.formatting = {
+      --   format = require("tailwindcss-colorizer-cmp").formatter,
+      -- }
+    end,
   },
 }
 

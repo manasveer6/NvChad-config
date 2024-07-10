@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls" }
+local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls", "tailwindcss" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
@@ -38,6 +38,14 @@ local filetypes_by_servers = {
   jdtls = {
     "java",
   },
+  tailwindcss = {
+    "html",
+    -- "css",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+  },
 }
 
 for _, lsp in ipairs(servers) do
@@ -59,6 +67,20 @@ lspconfig.clangd.setup {
   filetypes = {
     "c",
     "cpp",
+  },
+}
+
+lspconfig.cssls.setup {
+  settings = {
+    css = { validate = true, lint = {
+      unknownAtRules = "ignore",
+    } },
+    scss = { validate = true, lint = {
+      unknownAtRules = "ignore",
+    } },
+    less = { validate = true, lint = {
+      unknownAtRules = "ignore",
+    } },
   },
 }
 
