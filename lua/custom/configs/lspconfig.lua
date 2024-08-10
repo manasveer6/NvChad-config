@@ -3,12 +3,15 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls", "tailwindcss" }
+local servers =
+{ "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls", "tailwindcss", "gopls" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
     "html",
     "htmx",
+    "javascriptreact",
+    "typescriptreact",
   },
   html = {
     "html",
@@ -46,6 +49,12 @@ local filetypes_by_servers = {
     "javascriptreact",
     "typescriptreact",
   },
+  gopls = {
+    "go",
+    "gomod",
+    "gowork",
+    "gotmpl",
+  },
 }
 
 for _, lsp in ipairs(servers) do
@@ -81,6 +90,24 @@ lspconfig.cssls.setup {
     less = { validate = true, lint = {
       unknownAtRules = "ignore",
     } },
+  },
+}
+
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
   },
 }
 

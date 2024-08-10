@@ -138,3 +138,5 @@ vim.keymap.set("n", "<left>", '<CMD>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<CMD>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<CMD>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<CMD>echo "Use j to move!!"<CR>')
+
+vim.g.nvimtree_side = "right"

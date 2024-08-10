@@ -83,7 +83,8 @@ local plugins = {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
   },
   {
     "akinsho/toggleterm.nvim",
@@ -123,19 +124,19 @@ local plugins = {
   -- Smooth scrolling/movements
   {
     "declancm/cinnamon.nvim",
-    config = function()
+    opts = function()
       require("cinnamon").setup {
         extra_keymaps = true,
         override_keymaps = true,
         scroll_limit = 75,
-        -- keymaps = {
-        --   extra = true,
-        -- },
-        -- options = {
-        --   max_delta = {
-        --     line = 75,
-        --   },
-        -- },
+        keymaps = {
+          extra = true,
+        },
+        options = {
+          max_delta = {
+            line = 75,
+          },
+        },
       }
     end,
     event = "BufReadPost",
@@ -173,6 +174,11 @@ local plugins = {
       },
       view = {
         centralize_selection = true,
+        side = "right",
+        width = "20%",
+        -- float = {
+        --   enable = true,
+        -- },
       },
       diagnostics = {
         enable = true,
