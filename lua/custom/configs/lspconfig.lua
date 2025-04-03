@@ -4,7 +4,7 @@ local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
 local servers =
-{ "emmet_language_server", "html", "cssls", "pylsp", "tsserver", "bashls", "jdtls", "tailwindcss", "gopls" }
+  { "emmet_language_server", "html", "cssls", "pylsp", "ts_ls", "bashls", "jdtls", "tailwindcss", "gopls" }
 
 local filetypes_by_servers = {
   emmet_language_server = {
@@ -21,7 +21,7 @@ local filetypes_by_servers = {
     "css",
     "scss",
   },
-  tsserver = {
+  ts_ls = {
     "javascript",
     "javascriptreact",
     "typescript",
@@ -91,6 +91,14 @@ lspconfig.cssls.setup {
       unknownAtRules = "ignore",
     } },
   },
+}
+
+lspconfig.jdtls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "jdtls" },
+  filetypes = { "java" },
+  root_dir = lspconfig.util.root_pattern("pom.xml", "gradle.build", ".git", "build.xml"),
 }
 
 lspconfig.gopls.setup {

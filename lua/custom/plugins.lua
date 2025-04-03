@@ -170,6 +170,7 @@ local plugins = {
             },
           },
           git_placement = "after",
+          diagnostics_placement = "after",
         },
       },
       view = {
@@ -236,6 +237,69 @@ local plugins = {
       --   format = require("tailwindcss-colorizer-cmp").formatter,
       -- }
     end,
+  },
+  {
+    "AndrewRadev/switch.vim",
+    config = function()
+      vim.g.switch_custom_definitions = {
+        { "true", "false" },
+        { "yes", "no" },
+        { "on", "off" },
+        { "1", "0" },
+        { "const", "let", "var" },
+      }
+      vim.api.nvim_set_keymap("n", "<leader>s", ":Switch<CR>", { noremap = true, silent = true })
+    end,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  -- {
+  --   "monaqa/dial.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  -- },
+  {
+    "3rd/image.nvim",
+    config = function()
+      require("image").setup()
+      -- require "custom.configs.image"
+    end,
+    -- event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
+  },
+  {
+    dir = vim.fn.stdpath "config" .. "/lua/custom/motiquote", -- Use the absolute path to the plugin
+    lazy = false, -- Load on startup
+    config = function()
+      local motiquote = require "custom.motiquote" -- Load the plugin module
+
+      -- Create a user command to show a motivational quote
+      vim.api.nvim_create_user_command("MotiQuote", function()
+        motiquote.show_quote()
+      end, {})
+
+      -- Add a keybinding to show a motivational quote
+      vim.keymap.set("n", "<leader>mq", motiquote.show_quote, { desc = "Show a motivational quote" })
+    end,
+  },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- "ibhagwan/fzf-lua",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = "Leet",
+    opts = {
+      -- configuration goes here
+    },
+  },
+  {
+    "manasveer6/scratchpad.nvim",
+    config = function()
+      require("scratchpad").setup()
+    end,
+    lazy = false,
   },
 }
 
